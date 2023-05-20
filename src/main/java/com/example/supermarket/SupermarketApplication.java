@@ -1,13 +1,13 @@
-package com.example.dianshang;
+package com.example.supermarket;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DianshangApplication {
+public class SupermarketApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DianshangApplication.class, args);
+        SpringApplication.run(SupermarketApplication.class, args);
     }
 
 }

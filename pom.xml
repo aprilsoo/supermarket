@@ -87,7 +87,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
                 <configuration>
-                    <mainClass>com.example.dianshang.DianshangApplication</mainClass>
+                    <mainClass>com.example.supermarket.SupermarketApplication</mainClass>
                     <skip>true</skip>
                 </configuration>
                 <executions>
