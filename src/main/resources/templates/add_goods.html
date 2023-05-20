@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>添加商品</title>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        $(function(){
+            $("#exampleInputFile").change(function (){
+                var file=$("#exampleInputFile")[0].files[0];
+                var formdata= new FormData();
+                formdata.append("file",file);
+                $.ajax({
+                    url:"http://localhost:8080/upload",
+                    type:"post",
+                    data:formdata,
+                    processData:false,
+                    contentType:false,
+                    success:function (res){
+                        $("#img").attr("hidden",false);
+                        $("#img").attr("src",res.img);
+                        console.log(res.img);
+                        $("#file1").val(res.img);
+                    },error:function (ref){
+
+                    }
+                })
+            })
+        })
+
+    </script>
+
+</head>
+<body>
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <h3>
+                    添加商品
+                </h3>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <form role="form" th:action="@{/add_goods}" th:method="post">
+                    <div class="form-group">
+                        <label for="gname">名称</label><input type="text" class="form-control" id="gname" name="gname"/>
+                    </div>
+                    <div class="form-group">
+                        <label>商品类别</label>
+                        <div class="radio">
+                            <label th:each="category : ${categoryList}">
+                                <input type="radio" name="cid" th:value="${category.getCid()}"/><span th:text="${category.getCname()}"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>商品图片</label>
+                        <input type="file" id="exampleInputFile" />
+                        <img height="50px" width="50px" src="" hidden="hidden" id="img">
+                        <input hidden="hidden" id="file1" name="img">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">价格</label><input type="text" class="form-control" id="price" name="price"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="number">库存</label><input type="text" class="form-control" id="number" name="number"/>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="status" value="未上架"/>未上架</label>
+                        <label><input type="radio" name="status" value="已上架"/>已上架</label>
+                    </div>
+                    <button type="submit" class="btn btn-default">添加</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

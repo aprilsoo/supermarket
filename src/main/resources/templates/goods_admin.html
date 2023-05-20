@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>商品管理</title>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <nav class="navbar navbar-default" role="navigation">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">Brand</a>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a th:href="@{/category}">类别管理</a>
+                            </li>
+                            <li class="active">
+                                <a th:href="@{/goods_admin}">商品管理</a>
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">下拉<strong class="caret"></strong></a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a th:href="@{/logout}">退出登录</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                </nav>
+            </div>
+        </div>
+        <a class="btn btn-default" th:href="@{/addg_page}">添加商品</a>
+        <a class="btn btn-default" th:onclick="|batchDelete()|">批量删除</a>
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>
+                            选择
+                        </th>
+                        <th>
+                            编号
+                        </th>
+                        <th>
+                            图片
+                        </th>
+                        <th>
+                            名称
+                        </th>
+                        <th>
+                            类别
+                        </th>
+                        <th>
+                            价格
+                        </th>
+                        <th>
+                            数量
+                        </th>
+                        <th>
+                            状态
+                        </th>
+                        <th>
+                            操作
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="goods : ${goodsList}">
+                        <td>
+                            <input type="checkbox" th:onchange="|checkChanged(this,${goods.getGid()})|">
+                        </td>
+                        <td th:text="${goods.getGid()}"></td>
+                        <td>
+                            <img height="50px" width="50px" th:src="${goods.getImg()}">
+                        </td>
+                        <td th:text="${goods.getGname()}"></td>
+                        <td th:text="${goods.getCname()}"></td>
+                        <td th:text="${goods.getPrice()}"></td>
+                        <td th:text="${goods.getNumber()}"></td>
+                        <td th:text="${goods.getStatus()}"></td>
+                        <td>
+                            <a class="btn btn-default" th:href="@{'/updg_page' + '?gid=' + ${goods.getGid()}}">修改</a>
+                            <a class="btn btn-default" th:href="@{'/delete_goods' + '?gid=' + ${goods.getGid()}}">删除</a>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script th:src="@{/static/js/goods.js}"></script>
+</body>
+</html>

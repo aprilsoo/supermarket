@@ -13,40 +13,46 @@
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="container">
-    <div class="row clearfix">
-        <div class="col-md-12 column">
-            <div class="page-header">
-
+    <div class="container" >
+        <div class="row clearfix">
+            <div class="col-md-4 column">
             </div>
-            <form class="form-horizontal" role="form">
-                <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-                    <div class="col-sm-10">
-                        <input type="email" class="form-control" id="inputEmail3" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-                    <div class="col-sm-10">
-                        <input type="password" class="form-control" id="inputPassword3" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <div class="checkbox">
-                            <label><input type="checkbox" />Remember me</label>
+            <div class="col-md-4 column">
+                <center>
+                    <h1>登录页面</h1>
+                </center>
+                <form class="form-horizontal" role="form" style="margin-top:30%"
+                      th:action="@{/doLogin}" method="post">
+                    <div class="form-group">
+                        <label for="username" class="col-sm-3 control-label">用户名</label>
+                        <div class="col-sm-9">
+                            <input type="name" name="username" class="form-control" id="username" />
                         </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-default">Sign in</button>
+                    <div class="form-group">
+                        <label for="password" class="col-sm-3 control-label">密码</label>
+                        <div class="col-sm-9">
+                            <input type="password" name="password" class="form-control" id="password" />
+                        </div>
                     </div>
-                </div>
-            </form>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <div class="checkbox">
+                                <label><input type="checkbox" name="remember"/>记住我</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-success">登录</button>
+                            <a th:href="@{/register}">注册</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-4 column">
+            </div>
         </div>
     </div>
-</div>
 </body>
 </html>
