@@ -12,14 +12,9 @@ import java.util.List;
 @SpringBootTest
 class SupermarketApplicationTests {
 
-    @Autowired
-    GoodsService goodsService;
     @Test
     void contextLoads() {
-        List<Integer> test = new ArrayList<>();
-        test.add(5);
-        test.add(6);
-        goodsService.batchDeleteGoods(test);
+
     }
 
 }

@@ -88,4 +88,9 @@ public class PageController {
         model.addAttribute("cids",cids);
         return "goods_user";
     }
+
+    @RequestMapping("/")
+    public String index(){
+        return "redirect:login";
+    }
 }

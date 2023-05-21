@@ -49,7 +49,8 @@
     </div>
     <div class="row clearfix">
         <div class="col-md-12 column">
-            <form role="form" th:action="@{/add_goods}" th:method="post">
+            <form role="form" th:action="@{/update_goods}" th:method="post">
+                <input type="text" class="form-control" id="gid" name="gid" th:value="${goods.getGid()}" hidden/>
                 <div class="form-group">
                     <label for="gname">名称</label><input type="text" class="form-control" id="gname" name="gname" th:value="${goods.getGname()}"/>
                 </div>
@@ -74,8 +75,8 @@
                     <label for="number">库存</label><input type="text" class="form-control" id="number" name="number" th:value="${goods.getNumber()}"/>
                 </div>
                 <div class="radio">
-                    <label><input type="radio" name="status" value="未上架" th:checked="${goods.getStatus().equals('未上架')}?'checked':''" />未上架</label>
-                    <label><input type="radio" name="status" value="已上架" th:checked="${goods.getStatus().equals('已上架')}?'checked':''" />已上架</label>
+                    <label><input type="radio" name="status" value="未上架" th:checked="${goods.getStatus().equals('未上架')}?'checked':'false'" />未上架</label>
+                    <label><input type="radio" name="status" value="已上架" th:checked="${goods.getStatus().equals('已上架')}?'checked':'false'" />已上架</label>
                 </div>
                 <button type="submit" class="btn btn-default">保存</button>
             </form>
